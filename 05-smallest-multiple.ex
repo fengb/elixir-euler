@@ -5,13 +5,10 @@
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 defmodule Euler5 do
-  def lcm(m, n) do
-    if m > n do
-      lcm(m, n, n, [])
-    else
-      lcm(n, m, m, [])
-    end
-  end
+  def lcm(m, n) when m > n,  do: lcm(m, n, n, [])
+  def lcm(m, n) when m <= n, do: lcm(n, m, m, [])
+  def lcm([m, n]), do: lcm(m, n)
+  def lcm([head | tail]), do: lcm(tail) |> lcm(head)
 
   defp lcm(m, n, i, accu) do
     cond do
@@ -25,15 +22,6 @@ defmodule Euler5 do
       true ->
         lcm(m, n, i - 1, accu)
     end
-  end
-
-  def lcm([m, n]) do
-    lcm(m, n)
-  end
-
-  def lcm([head | tail]) do
-    lcm(tail)
-    |> lcm(head)
   end
 end
 

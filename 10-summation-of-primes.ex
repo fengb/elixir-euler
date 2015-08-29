@@ -12,9 +12,7 @@ defmodule Euler10 do
     end
   end
 
-  defp next_prime({}) do
-    2
-  end
+  defp next_prime({}), do: 2
 
   defp next_prime(prev_primes) do
     l = tuple_size(prev_primes) - 1

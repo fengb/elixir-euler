@@ -5,15 +5,13 @@
 # What is the largest prime factor of the number 600851475143 ?
 
 defmodule Euler3 do
-  def largest_factor(n) do
-    largest(n, 2)
-  end
+  def largest_factor(n), do: largest_factor(n, 2)
 
   defp largest_factor(n, i) do
     cond do
       i >= n         -> i
-      rem(n, i) == 0 -> largest(div(n, i), i)
-      true           -> largest(n, i + 1)
+      rem(n, i) == 0 -> largest_factor(div(n, i), i)
+      true           -> largest_factor(n, i + 1)
     end
   end
 end

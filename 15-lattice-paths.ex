@@ -12,14 +12,8 @@ defmodule Euler15 do
     v
   end
 
-  defp lattice(_r, 0, cache) do
-    { 1, cache }
-  end
-
-  defp lattice(0, _c, cache) do
-    { 1, cache }
-  end
-
+  defp lattice(_r, 0, cache), do: { 1, cache }
+  defp lattice(0, _c, cache), do: { 1, cache }
   defp lattice(r, c, cache) do
     key = { r, c }
     if Dict.has_key?(cache, key) do

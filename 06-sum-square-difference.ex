@@ -29,9 +29,7 @@ defmodule Euler6 do
     |> square
   end
 
-  defp square(num) do
-    num*num
-  end
+  defp square(num), do: num*num
 end
 
 1..100
