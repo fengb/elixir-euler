@@ -4,17 +4,27 @@
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
-mult_zip = fn(l1, l2) ->
-  Enum.flat_map(l1, fn(m) -> Enum.map(l2, fn(n) -> [m, n] end) end)
+defmodule Euler4 do
+  def mult_zip(l1, l2) do
+    mult_zip(l1, l2, fn(m, n) -> [m, n] end)
+  end
+
+  def mult_zip(l1, l2, merge) do
+    Enum.flat_map l1, fn(m) ->
+      Enum.map l2, fn(n) ->
+        merge.(m, n)
+      end
+    end
+  end
+
+  def palindrome?(n) do
+    chars = Integer.to_char_list(n)
+    chars == Enum.reverse(chars)
+  end
 end
 
-palindrome? = fn(n) ->
-  chars = Integer.to_char_list(n)
-  chars == Enum.reverse(chars)
-end
-
-mult_zip.(100..999, 100..999)
-|> Enum.map(fn([m, n]) -> m * n end)
-|> Enum.filter(palindrome?)
+100..999
+|> Euler4.mult_zip(100..999, fn(m, n) -> m * n end)
+|> Enum.filter(&Euler4.palindrome?/1)
 |> Enum.max
 |> IO.puts
