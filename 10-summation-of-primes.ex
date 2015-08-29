@@ -1,10 +1,10 @@
 #!/usr/bin/env elixir
 
-# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
-# What is the 10 001st prime number?
+# Find the sum of all the primes below two million.
 
-defmodule Euler7 do
+defmodule Euler10 do
   def prime_stream do
     Stream.unfold {}, fn(accu) ->
       prime = next_prime(accu)
@@ -40,7 +40,7 @@ defmodule Euler7 do
   end
 end
 
-Euler7.prime_stream
-|> Enum.take(10_001)
-|> List.last
+Euler10.prime_stream
+|> Enum.take_while(fn(n) -> n < 2_000_000 end)
+|> Enum.sum
 |> IO.inspect
