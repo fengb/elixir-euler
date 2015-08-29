@@ -4,12 +4,12 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
-defmodule Factor do
-  def largest(n) do
+defmodule Euler3 do
+  def largest_factor(n) do
     largest(n, 2)
   end
 
-  defp largest(n, i) do
+  defp largest_factor(n, i) do
     cond do
       i >= n         -> i
       rem(n, i) == 0 -> largest(div(n, i), i)
@@ -18,5 +18,5 @@ defmodule Factor do
   end
 end
 
-Factor.largest(600851475143)
+Euler3.largest_factor(600851475143)
 |> IO.puts
